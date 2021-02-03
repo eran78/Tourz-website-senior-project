@@ -28,6 +28,11 @@ namespace Tourz_web.Controllers
             return View();
         }
 
+        public IActionResult CountriesWeTour()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
