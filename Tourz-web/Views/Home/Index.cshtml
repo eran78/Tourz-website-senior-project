@@ -6,3 +6,40 @@
     <h1 class="display-4">Welcome to Tourz</h1>
     <p>Your ultimate provider for live/virtual guided tours for over 30 countries!</p>
 </div>
+
+<!DOCTYPE html>
+<link href="site.css" rel="stylesheet">
+<script src="script.js"></script>
+
+<html>
+<head>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Oregano' rel='stylesheet' type='text/css'>
+</head>
+
+<body style="font-size:20px;font-family:Calibri;">
+    <h1></h1>
+    <p style="letter-spacing:0.2em;line-height:2.5em;">
+    </p>
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js"></script>
+    <script language="javascript">
+      $(function() {
+          toastr.options = {
+             "closeButton": true,
+             "debug": false,
+             "positionClass": "toast-bottom-right",
+             "showDuration": "300",
+             "hideDuration": "1000",
+             "timeOut": "0",
+             "extendedTimeOut": "1000",
+             "showEasing": "swing",
+             "hideEasing": "linear",
+             "showMethod": "fadeIn",
+             "hideMethod": "fadeOut"
+          }
+    toastr.info("<p'>Cookies help us deliver our services. By using our services, you agree to our use of cookies. <a href='/Home/Privacy' target='_new'>More details</a></p>");
+      });
+    </script>
+</body>
+</html>
