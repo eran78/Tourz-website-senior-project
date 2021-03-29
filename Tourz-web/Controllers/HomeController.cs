@@ -10,9 +10,11 @@ using Tourz_web.Models;
 namespace Tourz_web.Controllers
 {
     public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
 
+    {
+        string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
+
+        private readonly ILogger<HomeController> _logger;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
