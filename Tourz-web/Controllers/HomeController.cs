@@ -15,6 +15,7 @@ namespace Tourz_web.Controllers
 
     {
         private readonly ILogger<HomeController> _logger;
+        private string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -23,7 +24,7 @@ namespace Tourz_web.Controllers
         public IActionResult Index()
         {
             var names = GetNames();
-            
+
             return View(names);
         }
         public List<string> GetNames()
@@ -36,7 +37,7 @@ namespace Tourz_web.Controllers
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand("select * from tourz website events", conn);
+                MySqlCommand cmd = new MySqlCommand("select * from tourz_events", conn);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -66,11 +67,33 @@ namespace Tourz_web.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        [HttpPost]
+        public IActionResult Contact(PersonModel model)
         {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            SavePerson(model);
+
+            ViewData["formsuccess"] = "ök";
+
             return View();
         }
 
+        private void SavePerson(PersonModel person)           
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("insert into tourz_contacts(fullname, email, msg) values(?fullname, ?email, ?msg)", conn);
+
+                cmd.Parameters.Add("?fullname", MySqlDbType.Text).Value = person.fullname;
+                cmd.Parameters.Add("?email", MySqlDbType.Text).Value = person.email;
+                cmd.Parameters.Add("?msg", MySqlDbType.Text).Value = person.msg;
+                cmd.ExecuteNonQuery();
+            }   
+        }
+        
         public IActionResult About()
         {
             return View();
