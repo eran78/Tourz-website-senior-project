@@ -36,7 +36,7 @@ namespace Tourz_web.Controllers
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand("select * from tourz website events", conn);
+                MySqlCommand cmd = new MySqlCommand("select * from tourz-website-events", conn);
 
                 using (var reader = cmd.ExecuteReader())
                 {
