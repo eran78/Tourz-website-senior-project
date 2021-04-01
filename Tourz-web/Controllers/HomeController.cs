@@ -15,7 +15,8 @@ namespace Tourz_web.Controllers
 
     {
         private readonly ILogger<HomeController> _logger;
-        private string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
+        private string connectionString = "Server=informatica.st-maartenscollege.nl;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
+        //private string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -27,7 +28,7 @@ namespace Tourz_web.Controllers
         }
         public List<string> GetNames()
         {
-            string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
+         
 
             List<string> names = new List<string>();
 
@@ -112,11 +113,15 @@ namespace Tourz_web.Controllers
             return View();
         }
 
-        public IActionResult singup()
+        public IActionResult signup()
         {
             return View();
         }
 
+        public IActionResult Contact()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
