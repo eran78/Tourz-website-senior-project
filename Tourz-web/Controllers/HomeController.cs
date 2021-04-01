@@ -96,9 +96,9 @@ namespace Tourz_web.Controllers
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into tourz_logindetails(email, password) values(?email, ?password)", conn);
+                MySqlCommand cmd = new MySqlCommand("insert into tourz_logindetails(username, password) values(?username, ?password)", conn);
 
-                cmd.Parameters.Add("?email", MySqlDbType.Text).Value = person.email;
+                cmd.Parameters.Add("?username", MySqlDbType.Text).Value = person.username;
                 cmd.Parameters.Add("?password", MySqlDbType.Text).Value = person.password;
             }
         }
