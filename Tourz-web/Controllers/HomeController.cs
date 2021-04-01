@@ -15,7 +15,8 @@ namespace Tourz_web.Controllers
 
     {
         private readonly ILogger<HomeController> _logger;
-        private string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
+        private string connectionString = "Server=informatica.st-maartenscollege.nl;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
+        //private string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -29,7 +30,7 @@ namespace Tourz_web.Controllers
         }
         public List<string> GetNames()
         {
-            string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
+         
 
             List<string> names = new List<string>();
 
@@ -92,6 +93,15 @@ namespace Tourz_web.Controllers
                 cmd.Parameters.Add("?msg", MySqlDbType.Text).Value = person.msg;
                 cmd.ExecuteNonQuery();
             }   
+            
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("insert into tourz_logindetails(username, password) values(?username, ?password)", conn);
+
+                cmd.Parameters.Add("?username", MySqlDbType.Text).Value = person.username;
+                cmd.Parameters.Add("?password", MySqlDbType.Text).Value = person.password;
+            }
         }
         
         public IActionResult About()

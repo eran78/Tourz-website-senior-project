@@ -10,5 +10,9 @@ namespace Tourz_web.Models
 
         public string msg { get; set; }
 
+        public string username { get; set; }
+
+        public string password { get; set; }
+
     }
 }
