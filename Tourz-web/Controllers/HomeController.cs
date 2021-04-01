@@ -23,9 +23,7 @@ namespace Tourz_web.Controllers
 
         public IActionResult Index()
         {
-            var names = GetNames();
-
-            return View(names);
+            return View();
         }
         public List<string> GetNames()
         {
@@ -59,7 +57,9 @@ namespace Tourz_web.Controllers
 
         public IActionResult CountriesWeTour()
         {
-            return View();
+            var names = GetNames();
+
+            return View(names);
         }
 
         public IActionResult Gallery()
