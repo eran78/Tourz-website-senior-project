@@ -59,9 +59,9 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  background-color: darkseagreen;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #00234a;
 }
 .footer {
   position: absolute;
@@ -69,6 +69,7 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+  background-color: white;
 }
 
 .fcf-form {
@@ -230,4 +231,12 @@ label.fcf-label {
 
 input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[type="button"].fcf-btn-block {
     width: 100%;
+}
+
+.container {
+    color: black;
+}
+
+.table {
+    background-color: white;
 }
