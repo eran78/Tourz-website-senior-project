@@ -1,5 +1,9 @@
 ﻿<!DOCTYPE html>
+
+<link rel="icon" type="image/png" href="https://www.favicon.cc/logo3d/90659.png" />
+
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,40 +11,48 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <a class="navbar-brand" href="/Home/">Tourz</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/Home/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/CountriesWeTour">Countries we tour</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/Gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/Contact">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/About">About us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/Privacy">Privacy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/login">Log in</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/sing up">Sign up</a>
+            </li>
+            <li class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0 bg-light text-dark border-dark" type="submit">Search</button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="padding: 0px">
-            <div class="container" style="margin-left: 490px">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Tourz</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item" style="background-color: violet">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item" style="background-color: royalblue">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CountriesWeTour">Countries we tour</a>
-                        </li>
-                        <li class="nav-item" style="background-color: lightskyblue">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Gallery">Gallery</a>
-                        </li>
-                        <li class="nav-item" style="background-color: lightgreen">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                        </li>
-                        <li class="nav-item" style="background-color: indianred">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+  
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -58,3 +70,4 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+

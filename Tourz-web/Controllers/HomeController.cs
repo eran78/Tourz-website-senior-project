@@ -15,6 +15,8 @@ namespace Tourz_web.Controllers
 
     {
         private readonly ILogger<HomeController> _logger;
+        private string connectionString = "Server=informatica.st-maartenscollege.nl;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
+        //private string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -22,13 +24,11 @@ namespace Tourz_web.Controllers
 
         public IActionResult Index()
         {
-            var names = GetNames();
-            
-            return View(names);
+            return View();
         }
         public List<string> GetNames()
         {
-            string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
+         
 
             List<string> names = new List<string>();
 
@@ -36,7 +36,7 @@ namespace Tourz_web.Controllers
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand("select * from tourz website events", conn);
+                MySqlCommand cmd = new MySqlCommand("select * from tourz_events", conn);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -58,10 +58,62 @@ namespace Tourz_web.Controllers
 
         public IActionResult CountriesWeTour()
         {
-            return View();
+            var names = GetNames();
+
+            return View(names);
         }
 
         public IActionResult Gallery()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Contact(PersonModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            SavePerson(model);
+
+            ViewData["formsuccess"] = "ök";
+
+            return View();
+        }
+
+        private void SavePerson(PersonModel person)           
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("insert into tourz_contacts(fullname, email, msg) values(?fullname, ?email, ?msg)", conn);
+
+                cmd.Parameters.Add("?fullname", MySqlDbType.Text).Value = person.fullname;
+                cmd.Parameters.Add("?email", MySqlDbType.Text).Value = person.email;
+                cmd.Parameters.Add("?msg", MySqlDbType.Text).Value = person.msg;
+                cmd.ExecuteNonQuery();
+            }   
+            
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("insert into tourz_logindetails(username, password) values(?username, ?password)", conn);
+
+                cmd.Parameters.Add("?username", MySqlDbType.Text).Value = person.username;
+                cmd.Parameters.Add("?password", MySqlDbType.Text).Value = person.password;
+            }
+        }
+        
+        public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult login()
+        {
+            return View();
+        }
+
+        public IActionResult signup()
         {
             return View();
         }
@@ -70,13 +122,6 @@ namespace Tourz_web.Controllers
         {
             return View();
         }
-
-        public IActionResult About()
-        {
-            return View();
-        }
-
-        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

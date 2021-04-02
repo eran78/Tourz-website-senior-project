@@ -2,78 +2,86 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Tourz</h1>
-    <p>Your ultimate provider for live/virtual guided tours for over 30 countries!</p>
-</div>
-
 <!DOCTYPE html>
 <link href="site.css" rel="stylesheet">
 <script src="script.js"></script>
+<link rel="icon" type="image/png" href="https://www.favicon.cc/logo3d/90659.png" />
+
+<br />
+
+<div class="card">
+    <div class="card-body text-center">
+        <h1 class="card-title">Welcome to Tourz</h1>
+        <p class="card-text">Your ultimate provider for live/virtual guided tours for over 30 countries!</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+    
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://image.shutterstock.com/image-photo/city-scape-night-beer-sheva-600w-1103780534.jpg" class="d-block w-100" alt="Kan plaatje niet laden.">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p>Be'er Sheva, Israel</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://static.reisgraag.nl/images/cached/gs-9b4745d046-Dubai_Burj_Khalifa2.jpg" class="d-block w-100" alt="Kan plaatje niet laden.">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p>Dubai, United Arab Emirates</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://media.tacdn.com/media/attractions-splice-spp-674x446/07/b3/07/25.jpg" class="d-block w-100" alt="Kan plaatje niet laden.">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p>Luxor, Egypt</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+</div>
 
 <html>
+
 <head>
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.min.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Oregano' rel='stylesheet' type='text/css'>
 </head>
 
-<body style="font-size:20px;font-family:Calibri;">
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://image.shutterstock.com/image-photo/city-scape-night-beer-sheva-600w-1103780534.jpg" class="d-block w-100" alt="Kan plaatje niet laden.">
-                <div class="carousel-caption d-none d-md-block">
-                    <p>Be'er Sheva, Israel</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://static.reisgraag.nl/images/cached/gs-9b4745d046-Dubai_Burj_Khalifa2.jpg" class="d-block w-100" alt="Kan plaatje niet laden.">
-                <div class="carousel-caption d-none d-md-block">
-                    <p>Dubai, United Arab Emirates</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://media.tacdn.com/media/attractions-splice-spp-674x446/07/b3/07/25.jpg" class="d-block w-100" alt="Kan plaatje niet laden.">
-                <div class="carousel-caption d-none d-md-block">
-                    <p>Luxor, Egypt</p>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+<body>
     <p style="letter-spacing:0.2em;line-height:2.5em;">
     </p>
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js"></script>
     <script language="javascript">
-      $(function() {
-          toastr.options = {
-             "closeButton": true,
-             "debug": false,
-             "positionClass": "toast-bottom-right",
-             "showDuration": "300",
-             "hideDuration": "1000",
-             "timeOut": "0",
-             "extendedTimeOut": "1000",
-             "showEasing": "swing",
-             "hideEasing": "linear",
-             "showMethod": "fadeIn",
-             "hideMethod": "fadeOut"
-          }
-    toastr.info("<p'>Cookies help us deliver our services. By using our services, you agree to our use of cookies. <a href='/Home/Privacy' target='_new'>More details</a></p>");
-      });
+        $(function () {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-bottom-right",
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "0",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.info("<p'>Cookies help us deliver our services. By using our services, you agree to our use of cookies. <a href='/Home/Privacy' target='_new'>More details</a></p>");
+        });
     </script>
 </body>
 </html>

@@ -1,60 +1,74 @@
+@model List<string>
+@{
+    ViewData["Title"] = "Gallery";
+}
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>    
-<div class="text-center">
-        <h1 class="display-4">Gallery</h1>
+</head>
+
+<br />
+
+<div class="card">
+    <div class="card-header text-center">
+        <h1>Gallery</h1>
         <p>Click on a country to view picture galleries of every city</p>
     </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>
+                <div class="row">
+                    <div class="column" style="margin-left: 150px">
+                        <ul>
+                            <li>The Netherlands</li>
+                            <li>Germany</li>
+                            <li>France</li>
+                            <li>United Kingdom</li>
+                            <li>Italy</li>
+                            <li>Austria</li>
+                            <li>Switserland</li>
+                            <li>Greece</li>
+                            <li>Cyprus</li>
+                            <li>Spain</li>
+                            <li>Canada</li>
+                            <li>United States</li>
+                            <li>Mexico</li>
+                            <li>Brazil</li>
+                            <li>Ecuador</li>
+                            <li>Argentina</li>
+                        </ul>
+                    </div>
+                    <div class="column" style="margin-left: 150px">
+                        <ul>
+                            <li>South Africa</li>
+                            <li>Israel</li>
+                            <li>United Arab Emirates</li>
+                            <li>Egypt</li>
+                            <li>Turkey</li>
+                            <li>Jordan</li>
+                            <li>Morocco</li>
+                            <li>Russia</li>
+                            <li>Nigeria</li>
+                        </ul>
+                    </div>
+                    <div class="column" style="margin-left: 150px">
+                        <ul>
+                            <li>India</li>
+                            <li>South Korea</li>
+                            <li>Vietnam</li>
+                            <li>Australia</li>
+                            <li>Thailand</li>
+                            <li>Indonesia</li>
+                            <li>China</li>
+                            <li>Hong Kong</li>
+                            <li>Japan</li>
+                            <li>Taiwan</li>
+                            <li>Malasia</li>
+                        </ul>
+                    </div>
+                </div>
+            </p>
+        </blockquote>
+    </div>
+</div>
 
-    <body>
-        <div class="row">
-            <div class="column" style="margin-left: 150px">
-                <ul>
-                    <li>The Netherlands</li>
-                    <li>Germany</li>
-                    <li>France</li>
-                    <li>United Kingdom</li>
-                    <li>Italy</li>
-                    <li>Austria</li>
-                    <li>Switserland</li>
-                    <li>Greece</li>
-                    <li>Cyprus</li>
-                    <li>Spain</li>
-                    <li>Canada</li>
-                    <li>United States</li>
-                    <li>Mexico</li>
-                    <li>Brazil</li>
-                    <li>Ecuador</li>
-                    <li>Argentina</li>
-                </ul>
-            </div>
-            <div class="column" style="margin-left: 150px">
-                <ul>
-                    <li>South Africa</li>
-                    <li>Israel</li>
-                    <li>United Arab Emirates</li>
-                    <li>Egypt</li>
-                    <li>Turkey</li>
-                    <li>Jordan</li>
-                    <li>Morocco</li>
-                    <li>Russia</li>
-                    <li>Nigeria</li>
-                </ul>
-            </div>
-            <div class="column" style="margin-left: 150px">
-                <ul>
-                    <li>India</li>
-                    <li>South Korea</li>
-                    <li>Vietnam</li>
-                    <li>Australia</li>
-                    <li>Thailand</li>
-                    <li>Indonesia</li>
-                    <li>China</li>
-                    <li>Hong Kong</li>
-                    <li>Japan</li>
-                    <li>Taiwan</li>
-                    <li>Malasia</li>
-                </ul>
-            </div>
-        </div>
-    </body>
