@@ -30,9 +30,7 @@ namespace Tourz_web.Controllers
             return View();
         }
         public List<string> GetNames()
-        {
-         
-
+        {   
             List<string> names = new List<string>();
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -100,6 +98,8 @@ namespace Tourz_web.Controllers
         
         private void SaveLogin(Login personlogin)
         {
+            // todo: store password as sha256
+      
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
@@ -115,19 +115,61 @@ namespace Tourz_web.Controllers
         {
             return View();
         }
-        public IActionResult login(Login model)
+
+        public IActionResult Login()
+        {
+          return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Login(Login model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
-            SaveLogin(model);
+            var user = GetUserByUserName(model.Username);
+            
+            // todo: add sha 256 check
+            if(user.Password == model.Password)
+            {
+                // yay ingelogd!
+                // todo:store in session
 
-            ViewData["formsuccess"] = "ök";
+            }
 
             return View();
         }
 
-        private object ComputeSha256Hash(object password)
+    public Login GetUserByUserName(string username)
+    {
+      List<Login> names = new List<Login>();
+
+      using (MySqlConnection conn = new MySqlConnection(connectionString))
+      {
+        conn.Open();
+
+        MySqlCommand cmd = new MySqlCommand($"select * from tourz_logindetails where username = '{username}'", conn);
+
+        using (var reader = cmd.ExecuteReader())
+        {
+          while (reader.Read())
+          {
+            Login l = new Login
+            {
+              Id = Convert.ToInt32(reader["Id"]),
+              Password = reader["Password"].ToString(),
+              Username = reader["Username"].ToString()
+            };            
+
+            names.Add(l);
+          }
+        }
+      }
+      return names[0];
+    }
+
+    private object ComputeSha256Hash(object password)
         {
             throw new NotImplementedException();
         }
