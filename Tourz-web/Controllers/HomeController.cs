@@ -8,6 +8,9 @@ using Microsoft.Extensions.Logging;
 using Tourz_web.Models;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
+using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Tourz_web.Controllers
 {
@@ -16,6 +19,8 @@ namespace Tourz_web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private string connectionString = "Server=informatica.st-maartenscollege.nl;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
+        private object wachtwoord;
+
         //private string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
         public HomeController(ILogger<HomeController> logger)
         {
@@ -110,8 +115,30 @@ namespace Tourz_web.Controllers
         }
         public IActionResult login()
         {
+            var klant = GetPersonByusername(username);
+
+            if (klant.Wachtwoord == ComputeSha256Hash(password))
+            {
+                HttpContext.Session.SetInt32("UserId",
+                                             klant.Id);
+                HttpContext.Session.SetString("UserName",
+                                              klant.Voornaam);
+                return Redirect("/profiel");
+            }
+
             return View();
         }
+
+        private object ComputeSha256Hash(object password)
+        {
+            throw new NotImplementedException();
+        }
+
+        private object GetPersonByusername(object username)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public IActionResult signup()
         {
@@ -136,4 +163,22 @@ namespace Tourz_web.Controllers
             return View("~/Views/Home/404page.cshtml");
         }
     }
+    static string ComputeSha256Hash(string rawData)
+    {
+        // Create a SHA256   
+        using (SHA256 sha256Hash = SHA256.Create())
+        {
+            // ComputeHash - returns byte array  
+            byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+
+            // Convert byte array to a string   
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                builder.Append(bytes[i].ToString("x2"));
+            }
+            return builder.ToString();
+        }
+    }
+
 }
