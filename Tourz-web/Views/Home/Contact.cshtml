@@ -11,6 +11,11 @@
 
 </head>
 
+@if(ViewData["formsuccess"] == "ök")
+  {
+    <p style="color: white">Success! Thanks for the feedback!</p>
+  }
+
 <html>
 <body>
         <div class="fcf-body">
@@ -18,12 +23,12 @@
             <div id="fcf-form">
                 <h3 class="fcf-h3">Contact us</h3>
 
-                <form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
+                <form id="fcf-form-id" class="fcf-form-class" method="post">
 
                     <div class="fcf-form-group">
-                        <label for="Name" class="fcf-label">Your name</label>
+                        <label for="Fullname" class="fcf-label">Your name</label>
                         <div class="fcf-input-group">
-                            <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+                            <input type="text" id="Fullname" name="Fullname" class="fcf-form-control" required>
                         </div>
                     </div>
 
