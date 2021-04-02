@@ -88,28 +88,41 @@ namespace Tourz_web.Controllers
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand("insert into tourz_contacts(fullname, email, msg) values(?fullname, ?email, ?msg)", conn);
 
-                cmd.Parameters.Add("?fullname", MySqlDbType.Text).Value = person.fullname;
-                cmd.Parameters.Add("?email", MySqlDbType.Text).Value = person.email;
-                cmd.Parameters.Add("?msg", MySqlDbType.Text).Value = person.msg;
+                cmd.Parameters.Add("?fullname", MySqlDbType.VarChar).Value = person.Fullname;
+                cmd.Parameters.Add("?email", MySqlDbType.VarChar).Value = person.Email;
+                cmd.Parameters.Add("?msg", MySqlDbType.VarChar).Value = person.Message;
                 cmd.ExecuteNonQuery();
             }   
             
+            
+        }
+        
+        private void SaveLogin(Login personlogin)
+        {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand("insert into tourz_logindetails(username, password) values(?username, ?password)", conn);
 
-                cmd.Parameters.Add("?username", MySqlDbType.Text).Value = person.username;
-                cmd.Parameters.Add("?password", MySqlDbType.Text).Value = person.password;
+                cmd.Parameters.Add("?username", MySqlDbType.VarChar).Value = personlogin.Username;
+                cmd.Parameters.Add("?password", MySqlDbType.VarChar).Value = personlogin.Password;
+                cmd.ExecuteNonQuery();
             }
         }
-        
+
         public IActionResult About()
         {
             return View();
         }
-        public IActionResult login()
+        public IActionResult login(Login model)
         {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            SaveLogin(model);
+
+            ViewData["formsuccess"] = "ök";
+
             return View();
         }
 
