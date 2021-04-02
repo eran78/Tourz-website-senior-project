@@ -134,8 +134,7 @@ namespace Tourz_web.Controllers
             if(user.Password == model.Password)
             {
                 // yay ingelogd!
-                // todo:store in session
-
+                // todo:store in session                
             }
 
             return View();
