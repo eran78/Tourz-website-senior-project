@@ -20,6 +20,8 @@ namespace Tourz_web.Controllers
         private readonly ILogger<HomeController> _logger;
         private string connectionString = "Server=informatica.st-maartenscollege.nl;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
         private object wachtwoord;
+        private object username;
+        private object password;
 
         //private string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
         public HomeController(ILogger<HomeController> logger)
@@ -117,16 +119,17 @@ namespace Tourz_web.Controllers
         {
             var klant = GetPersonByusername(username);
 
-            if (klant.Wachtwoord == ComputeSha256Hash(password))
+            if (klant.password != ComputeSha256Hash(password))
             {
-                HttpContext.Session.SetInt32("UserId",
-                                             klant.Id);
-                HttpContext.Session.SetString("UserName",
-                                              klant.Voornaam);
-                return Redirect("/profiel");
+                return View();
             }
-
-            return View();
+            HttpContext.Session.SetInt32(
+                "UserId",
+                klant.Id);
+            HttpContext.Session.SetString(
+                "UserName",
+                klant.username);
+            return Redirect("/profiel");
         }
 
         private object ComputeSha256Hash(object password)
@@ -163,7 +166,8 @@ namespace Tourz_web.Controllers
             return View("~/Views/Home/404page.cshtml");
         }
     }
-    static string ComputeSha256Hash(string rawData)
+
+    private static string ComputeSha256Hash(string rawData)
     {
         // Create a SHA256   
         using (SHA256 sha256Hash = SHA256.Create())
