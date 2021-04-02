@@ -19,10 +19,6 @@ namespace Tourz_web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private string connectionString = "Server=informatica.st-maartenscollege.nl;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
-        private object wachtwoord;
-        private object username;
-        private object password;
-
         //private string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
         public HomeController(ILogger<HomeController> logger)
         {
