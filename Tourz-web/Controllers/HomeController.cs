@@ -8,6 +8,9 @@ using Microsoft.Extensions.Logging;
 using Tourz_web.Models;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
+using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Tourz_web.Controllers
 {
@@ -16,6 +19,10 @@ namespace Tourz_web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private string connectionString = "Server=informatica.st-maartenscollege.nl;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
+        private object wachtwoord;
+        private object username;
+        private object password;
+
         //private string connectionString = "Server=172.16.160.21;Port=3306;Database=110078;Uid=110078;Pwd=nsRoUSEC;";
         public HomeController(ILogger<HomeController> logger)
         {
@@ -88,43 +95,53 @@ namespace Tourz_web.Controllers
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand("insert into tourz_contacts(fullname, email, msg) values(?fullname, ?email, ?msg)", conn);
 
-                cmd.Parameters.Add("?fullname", MySqlDbType.VarChar).Value = person.Fullname;
-                cmd.Parameters.Add("?email", MySqlDbType.VarChar).Value = person.Email;
-                cmd.Parameters.Add("?msg", MySqlDbType.VarChar).Value = person.Message;
+                cmd.Parameters.Add("?fullname", MySqlDbType.Text).Value = person.fullname;
+                cmd.Parameters.Add("?email", MySqlDbType.Text).Value = person.email;
+                cmd.Parameters.Add("?msg", MySqlDbType.Text).Value = person.msg;
                 cmd.ExecuteNonQuery();
             }   
             
-            
-        }
-        
-        private void SaveLogin(Login personlogin)
-        {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand("insert into tourz_logindetails(username, password) values(?username, ?password)", conn);
 
-                cmd.Parameters.Add("?username", MySqlDbType.VarChar).Value = personlogin.Username;
-                cmd.Parameters.Add("?password", MySqlDbType.VarChar).Value = personlogin.Password;
-                cmd.ExecuteNonQuery();
+                cmd.Parameters.Add("?username", MySqlDbType.Text).Value = person.username;
+                cmd.Parameters.Add("?password", MySqlDbType.Text).Value = person.password;
             }
         }
-
+        
         public IActionResult About()
         {
             return View();
         }
-        public IActionResult login(Login model)
+        public IActionResult login()
         {
-            if (!ModelState.IsValid)
-                return View(model);
+            var klant = GetPersonByusername(username);
 
-            SaveLogin(model);
-
-            ViewData["formsuccess"] = "ök";
-
-            return View();
+            if (klant.password != ComputeSha256Hash(password))
+            {
+                return View();
+            }
+            HttpContext.Session.SetInt32(
+                "UserId",
+                klant.Id);
+            HttpContext.Session.SetString(
+                "UserName",
+                klant.username);
+            return Redirect("/profiel");
         }
+
+        private object ComputeSha256Hash(object password)
+        {
+            throw new NotImplementedException();
+        }
+
+        private object GetPersonByusername(object username)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public IActionResult signup()
         {
@@ -149,4 +166,23 @@ namespace Tourz_web.Controllers
             return View("~/Views/Home/404page.cshtml");
         }
     }
+
+    private static string ComputeSha256Hash(string rawData)
+    {
+        // Create a SHA256   
+        using (SHA256 sha256Hash = SHA256.Create())
+        {
+            // ComputeHash - returns byte array  
+            byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+
+            // Convert byte array to a string   
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                builder.Append(bytes[i].ToString("x2"));
+            }
+            return builder.ToString();
+        }
+    }
+
 }
