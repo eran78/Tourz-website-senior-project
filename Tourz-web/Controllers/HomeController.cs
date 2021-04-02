@@ -91,9 +91,9 @@ namespace Tourz_web.Controllers
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand("insert into tourz_contacts(fullname, email, msg) values(?fullname, ?email, ?msg)", conn);
 
-                cmd.Parameters.Add("?fullname", MySqlDbType.Text).Value = person.Fullname;
-                cmd.Parameters.Add("?email", MySqlDbType.Text).Value = person.Email;
-                cmd.Parameters.Add("?msg", MySqlDbType.Text).Value = person.Message;
+                cmd.Parameters.Add("?fullname", MySqlDbType.VarChar).Value = person.Fullname;
+                cmd.Parameters.Add("?email", MySqlDbType.VarChar).Value = person.Email;
+                cmd.Parameters.Add("?msg", MySqlDbType.VarChar).Value = person.Message;
                 cmd.ExecuteNonQuery();
             }   
         }
@@ -105,8 +105,8 @@ namespace Tourz_web.Controllers
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand("insert into tourz_logindetails(username, password) values(?username, ?password)", conn);
 
-                cmd.Parameters.Add("?username", MySqlDbType.Text).Value = personlogin.Username;
-                cmd.Parameters.Add("?password", MySqlDbType.Text).Value = personlogin.Password;
+                cmd.Parameters.Add("?username", MySqlDbType.VarChar).Value = personlogin.Username;
+                cmd.Parameters.Add("?password", MySqlDbType.VarChar).Value = personlogin.Password;
                 cmd.ExecuteNonQuery();
             }
         }
